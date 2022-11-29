@@ -1,6 +1,6 @@
 # Master and Replica RDS example for MySQL
 
-Configuration in this directory creates set of RDS resources demonstrating master and replica in the same VPC.
+Configuration in this directory creates set of 2 RDS Mysql resources master1 & master2 and replica of master1 in the same VPC.
 
 ## Usage
 
@@ -12,7 +12,7 @@ $ terraform plan
 $ terraform apply
 ```
 
-Note that this example may create resources which cost money. Run `terraform destroy` when you don't need these resources.
+Note that this may create resources which cost money. Run `terraform destroy` when you don't need these resources.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -30,8 +30,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_master"></a> [master](#module\_master) | ../../ | n/a |
-| <a name="module_replica"></a> [replica](#module\_replica) | ../../ | n/a |
+| <a name="module_master"></a> [master](#module\_master) | terraform-aws-modules/rds/aws | n/a |
+| <a name="module_replica"></a> [replica](#module\_replica) | terraform-aws-modules/rds/aws | n/a |
 | <a name="module_security_group"></a> [security\_group](#module\_security\_group) | terraform-aws-modules/security-group/aws | ~> 4.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 3.0 |
 
