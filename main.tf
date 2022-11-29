@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  name   = "replica-mysql"
+  name   = "Rds-mysql"
   region = "us-east-1"
 
   tags = {
@@ -16,7 +16,7 @@ locals {
   engine_version        = "8.0.27"
   family                = "mysql8.0" # DB parameter group
   major_engine_version  = "8.0"      # DB option group
-  instance_class        = "db.t4g.large"
+  instance_class        = "db.t3.micro"
   allocated_storage     = 20
   max_allocated_storage = 100
   port                  = 3306
@@ -40,7 +40,7 @@ module "master1" {
   allocated_storage     = local.allocated_storage
   max_allocated_storage = local.max_allocated_storage
 
-  db_name  = "replicaMysql"
+  db_name  = "ngmuthrds"
   username = "admin"
   password = "redhat123"
   port     = local.port
@@ -78,7 +78,7 @@ module "master2" {
   allocated_storage     = local.allocated_storage
   max_allocated_storage = local.max_allocated_storage
 
-  db_name  = "replicaMysql"
+  db_name  = "ngmuthrds"
   username = "admin"
   password = "Redhat123"
   port     = local.port
