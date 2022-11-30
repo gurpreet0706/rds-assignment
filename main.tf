@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  name   = "Rds-mysql"
+  name   = "rds-mysql"
   region = "us-east-1"
 
   tags = {
