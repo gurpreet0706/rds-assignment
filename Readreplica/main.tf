@@ -27,8 +27,7 @@ module "master1" {
 
   maintenance_window              = "Mon:00:00-Mon:03:00"
   backup_window                   = "03:00-06:00"
-  enabled_cloudwatch_logs_exports = ["general"]
-
+  
   # Backups are required in order to create a replica
   backup_retention_period = 1
   skip_final_snapshot     = var.skip_finalSnapshot
@@ -66,8 +65,7 @@ module "replica" {
 
   maintenance_window              = "Tue:00:00-Tue:03:00"
   backup_window                   = "03:00-06:00"
-  enabled_cloudwatch_logs_exports = ["general"]
-
+  
   backup_retention_period = 0
   skip_final_snapshot     = var.skip_finalSnapshot
   deletion_protection     = var.deletion_protection
