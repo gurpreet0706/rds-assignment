@@ -8,8 +8,8 @@ To run this example you need to execute:
 
 ```bash
 $ terraform init
-$ terraform plan
-$ terraform apply
+$ terraform plan -var-file=vars.tfvars
+$ terraform apply -var-file=vars.tfvars
 ```
 
 Note that this may create resources which cost money. Run `terraform destroy` when you don't need these resources.
