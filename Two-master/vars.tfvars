@@ -1,6 +1,6 @@
 engine_name              = "mysql"
 engine_version           = "8.0.27"
-db_name                  = "Master-1"
+db_name                  = "ngmuthrds"
 user_name                = "admin"
 pass                     = "Redhat123"
 multi_az_deployment      = false
