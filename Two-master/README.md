@@ -1,4 +1,4 @@
-# Two Standalone  Master and Replica RDS for MySQL
+# Two Standalone RDS for MySQL and then enable replication between them
 
 Configuration in this directory creates set of 2 RDS Mysql resources master1 & master2 and replica of master1 in the same VPC.
 
