@@ -2,26 +2,6 @@ provider "aws" {
   region = local.region
 }
 
-locals {
-  name   = "rds-mysql"
-  region = "us-east-1"
-
-  tags = {
-    Name       = local.name
-    Example    = local.name
-    Repository = "https://github.com/terraform-aws-modules/terraform-aws-rds"
-  }
-
-  engine                = "mysql"
-  engine_version        = "8.0.27"
-  family                = "mysql8.0" # DB parameter group
-  major_engine_version  = "8.0"      # DB option group
-  instance_class        = "db.t3.micro"
-  allocated_storage     = 20
-  max_allocated_storage = 100
-  port                  = 3306
-}
-
 ################################################################################
 # Master DB
 ################################################################################
@@ -31,21 +11,21 @@ module "master1" {
 
   identifier = "${local.name}-master1"
 
-  engine               = local.engine
-  engine_version       = local.engine_version
-  family               = local.family
-  major_engine_version = local.major_engine_version
-  instance_class       = local.instance_class
+  engine               = var.engine_name
+  engine_version       = var.engine_version
+  family               = var.family
+  major_engine_version = var.major_engine_version
+  instance_class       = var.instance_class
+  
+  allocated_storage     = var.allocated_storage
+  max_allocated_storage = var.max_storage
 
-  allocated_storage     = local.allocated_storage
-  max_allocated_storage = local.max_allocated_storage
+  db_name  = var.db_name
+  username = var.user_name
+  password = var.pass
+  port     = var.port
 
-  db_name  = "ngmuthrds"
-  username = "admin"
-  password = "redhat123"
-  port     = local.port
-
-  multi_az               = true
+  multi_az               = var.multi_az_deployment
   db_subnet_group_name   = module.vpc.database_subnet_group_name
   vpc_security_group_ids = [module.security_group.security_group_id]
 
@@ -55,8 +35,8 @@ module "master1" {
 
   # Backups are required in order to create a replica
   backup_retention_period = 1
-  skip_final_snapshot     = true
-  deletion_protection     = false
+  skip_final_snapshot     = var.skip_finalSnapshot
+  deletion_protection     = var.deletion_protection
 
   tags = local.tags
 }
@@ -69,21 +49,21 @@ module "master2" {
 
   identifier = "${local.name}-master2"
 
-  engine               = local.engine
-  engine_version       = local.engine_version
-  family               = local.family
-  major_engine_version = local.major_engine_version
-  instance_class       = local.instance_class
+  engine               = var.engine_name
+  engine_version       = var.engine_version
+  family               = var.family
+  major_engine_version = var.major_engine_version
+  instance_class       = var.instance_class
 
-  allocated_storage     = local.allocated_storage
-  max_allocated_storage = local.max_allocated_storage
+  allocated_storage     = var.allocated_storage
+  max_allocated_storage = var.max_storage
 
-  db_name  = "ngmuthrds"
-  username = "admin"
-  password = "Redhat123"
-  port     = local.port
+  db_name  = var.db_name
+  username = var.user_name
+  password = var.pass
+  port     = var.port
 
-  multi_az               = true
+  multi_az               = var.multi_az_deployment
   db_subnet_group_name   = module.vpc.database_subnet_group_name
   vpc_security_group_ids = [module.security_group.security_group_id]
 
@@ -93,8 +73,8 @@ module "master2" {
 
   # Backups are required in order to create a replica
   backup_retention_period = 1
-  skip_final_snapshot     = true
-  deletion_protection     = false
+  skip_final_snapshot     = var.skip_finalSnapshot
+  deletion_protection     = var.deletion_protection
 
   tags = local.tags
 }
