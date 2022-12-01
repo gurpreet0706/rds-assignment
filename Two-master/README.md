@@ -79,19 +79,19 @@ CALL mysql.rds_set_external_master (
 
 for example:
 call mysql.rds_set_external_master(
-  'master.ccoyjti7kwxw.us-east-1.rds.amazonaws.com',# endpoint of Master1 rds instance \n
-  3306, # port \n
-  'repl_user', # replication user we created above in master1 rds instance \n
-  'password', #password for replication user  we created above in master1 rds instance \n
-   'mysql-bin-changelog.000008', # bin file location which we got from task 5 \n
-  157, position from task 5 \n
-  0); #  value that specifies whether Secure Socket Layer (SSL) encryption is used on the replication connection. 1 specifies to use SSL encryption, 0 specifies to not use encryption. The default is 0. \n 
+  'master.ccoyjti7kwxw.us-east-1.rds.amazonaws.com',# endpoint of Master1 rds instance 
+  3306, # port 
+  'repl_user', # replication user we created above in master1 rds instance 
+  'password', #password for replication user  we created above in master1 rds instance 
+   'mysql-bin-changelog.000008', # bin file location which we got from task 5 
+  157, position from task 5 
+  0); #  value that specifies whether Secure Socket Layer (SSL) encryption is used on the replication connection. 1 specifies to use SSL encryption, 0 specifies to not use encryption. The default is 0. 
 
 
 then run below command
-Call mysql.rds_start_replication;
+Call "mysql.rds_start_replication;" 
 
 and now check the status of the slave now.
-run show slave status, you can see replication has been started.
+run "show slave status\G" you can see replication has been started.
 
 
